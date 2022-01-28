@@ -58,6 +58,7 @@ namespace TwoDMorph
                 // 
                 GenerateDistanceRow( id );
                 hitCount = 0;
+                Console.Beep( );
             }
 
         }
