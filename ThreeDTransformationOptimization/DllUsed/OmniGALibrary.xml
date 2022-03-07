@@ -1,0 +1,2058 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OmniGALibrary</name>
+    </assembly>
+    <members>
+        <member name="T:OmniSoftwareStudio.OrganismGA.BinaryGAModule">
+            <summary>
+             BinaryGA uses byte type to store 0 or 1 values for a binary-coded GA chromosome
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.#ctor(System.Int32)">
+            <summary>
+             Constructor to instantiate an instance of binary encoded GA module.
+            </summary>
+            <param name="numberOfVariables"> Number of variables </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.ToString">
+            <summary>
+             The title of this module.
+            </summary>
+            <returns> Module title </returns>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.BinaryGAModule.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deal with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.DefaultInitializePopulation">
+            <summary>
+             Own implementation of population initialization, which will be called in reset function.
+             Randomly fill in 0 or 1 value to each gene of each parent chromosome.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Own crossover operation procedure to generate and set gene values for a pair of 
+             crossovered offspring by referring to a given pair of parent indexes 
+            </summary>
+            <param name="fatherIdx"> index of father chromosome </param>
+            <param name="motherIdx"> index of mother chromosome  </param>
+            <param name="child1Idx"> index of child 1 chromosome </param>
+            <param name="child2Idx"> index of child 2 chromosome </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> Index to the parent organism </param>
+            <param name="childIdx"> Index to the child to be generated </param>
+            <returns> Success or not </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.BinaryGAModule.PerformGeneBasedMutation(System.Double,System.Int32)">
+            <summary>
+             Function to let this module to perform overall mutation operation. The module need 
+             to determine those genes and associated parent chromosomes to create offspring
+             chromosome.
+            </summary>
+            <param name="mutationRate"> Specified mutation rate</param>
+            <param name="startIdx"> The start index of offspring from mutation </param>
+            <returns> Number of mutated children created </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.ExperimentRunDialog">
+            <summary>
+             Dialog for mode setting in executing experiment runs.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.ExperimentRunDialog.#ctor(OmniSoftwareStudio.OrganismGA.GASolver)">
+            <summary>
+             A dialog for user to plan experiment run modes for a GA solver. Different
+             parameter settings are therefore different modes.
+            </summary>
+            <param name="solver"></param>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.ExperimentRunDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.ExperimentRunDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.ExperimentRunDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GAExecutionPanel">
+            <summary>
+             The user control that hosts the GA execution buttons, property setting
+             grid, and line charts of objective evolutions. 
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAResetButton">
+            <summary>
+             The tool strip button that resets GA.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GARunOneIterationButton">
+            <summary>
+             The tool strip button that run GA evolution for one iteration.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GARunToEndButton">
+            <summary>
+             The tool strip button that runs the GA evolution to whatever termination 
+             condition is met.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAExperimentRunButton">
+            <summary>
+             The tool strip button that sets and performs experiment runs.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAParameterPropertyGrid">
+            <summary>
+             The property grid that interact with users for setting GA parameters.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAProgressChart">
+            <summary>
+             The chart component that displays the objective value evolutions on 
+             iteration average, iteration best and so far the best.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAShowAnimation">
+            <summary>
+             Flag to enable or disable the real-time objective values display on the line chart.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAToolBar">
+            <summary>
+             The tool bar control of the GA management panel. By default it is visible.
+             Instead of using the embedded tool bar, user can hide this bar.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAStatusBar">
+            <summary>
+             The status bar control of the GA management panel. By default it is visible.
+             Instead of using the embedded status bar, user can hide this bar.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAHostPanel">
+            <summary>
+             User can set a control (usually a panel) as the host control that
+             anchors the GA management panel.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GASolver">
+            <summary>
+             The GA solver object that uses this management panel.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.#ctor(OmniSoftwareStudio.OrganismGA.GASolver)">
+            <summary>
+             Internal Constructor to be used by the GASolver.
+            </summary>
+            <param name="solver"> The GA Solver </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.#ctor(OmniSoftwareStudio.OrganismGA.GASolver,System.Windows.Forms.Control)">
+            <summary>
+             Internal Constructor to be used by the GASolver.
+            </summary>
+            <param name="solver"> The GA Solver</param>
+            <param name="parent"> The host control provided by the user. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.#ctor(System.Windows.Forms.Control)">
+            <summary>
+            Internal Constructor to be used by the GASolver.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAClickRunOneIteration">
+            <summary>
+             Operations executed in clicking RunToEnd button. 
+             Custom button can perform the same task, when tool bar is invisible.
+            </summary>      
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.btnRunToEnd_Click(System.Object,System.EventArgs)">
+            <summary>
+             Run to end execution or stop the run thread.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAClickRunToEnd">
+            <summary>
+             Operations executed in clicking RunToEnd button. 
+             Custom button can perform the same task, when tool bar is invisible.
+            </summary>        
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.RunToEndFunction">
+            <summary>
+             Executed by different thread to evolve best solutions.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.ShowEndUI">
+            <summary>
+             Executed by the original control-creation thread to update information
+             of the UIs.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.UpdateIterationUI">
+            <summary>
+             Executed by the original control-creation thread to update information
+             of the UIs.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAClickExperimentRun">
+            <summary>
+             Operations executed in clicking ExperimentRun button. 
+             Custom button can perform the same task, when tool bar is invisible.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAGetComputerInfo">
+            <summary>
+             Obtain computing capability information.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.GAClickResetGA">
+            <summary>
+             Operations executed in clicking Reset button. 
+             Custom button can perform the same task, when tool bar is invisible.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.components">
+            <summary> 
+            設計工具所需的變數。
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.Dispose(System.Boolean)">
+            <summary> 
+            清除任何使用中的資源。
+            </summary>
+            <param name="disposing">如果應該處置受控資源則為 true，否則為 false。</param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAExecutionPanel.InitializeComponent">
+            <summary> 
+            此為設計工具支援所需的方法 - 請勿使用程式碼編輯器修改
+            這個方法的內容。
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.Module">
+            <summary>
+             The base class of GA modules with different data types.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.Module.populationSize">
+            <summary>
+             The user specified number of organisms (solution agents).
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.Module.optimizationType">
+            <summary>
+             The optimization goal of the associated optimization solver.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.Module.randomizer">
+            <summary>
+             A statically shared random number generator.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.Module.numberOfGenes">
+            <summary>
+             Number of genes specified in this encoding module.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Module.PairHeuristicValues">
+            <summary>
+             A heuristic value matrix defines the gene to gene heuristic values. This matrix is 
+             required for choosing Heuristic crossover, where the values between a pair of genes
+             are referenced. For example, in a TSP problem, the value is the distance from one
+             city to the other, and the heuristic crossover operator will compose a solution that
+             makes the shorter pair of genes (cities) consecutive.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Module.NumberOfCuts">
+            <summary>
+             The number of cuts on chromosome of this module. Two cuts generate three segments and 
+             the second one will be crossovered. If user set to "Auto" the system will determine
+             the number automatically.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Module.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module, overridden by 
+             specific GA module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deals with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.InitializePopulation">
+            <summary>
+             Initialize the gene values of the chromosomes handled by this module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.GenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Function to let this module to generate a pair of offspring chromosomes from a pair of parents.
+            </summary>
+            <param name="fatherIdx"> Index to the father organism. </param>
+            <param name="motherIdx"> Index to the mother organism.</param>
+            <param name="child1Idx"> Index to the first child to be generated. </param>
+            <param name="child2Idx"> Index to the second child to be generated. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.MutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> Index of the parent organism in the population. </param>
+            <param name="childIdx"> Index of the child organism in the organism list that is to be generated. </param>
+            <param name="NoMutate"> Flag for simply copy parent without mutation.</param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.PerformGeneBasedMutation(System.Double,System.Int32)">
+            <summary>
+             Function to let this module to perform overall mutation operation. The module need 
+             to determine those genes and associated parent chromosomes to create offspring
+             chromosome.
+            </summary>
+            <param name="mutationRate"> Specified mutation rate. </param>
+            <param name="startIdx"> The start index in the organism array of the mutated offspring. </param>
+            <returns> Number of mutated children created. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.Module.LoadParameterSettingString(System.IO.StringReader)">
+            <summary>
+             Set GA related parameters in batch by reading from a string stream.
+            </summary>
+            <param name="parameterString"> The string reader associated with the parameter string. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GAModule`1">
+            <summary>
+             The data type independent template class representing a GA evolution module.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModule`1.chromosomes">
+            <summary>
+             The population of organisms
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModule`1.CustomInitialiationFunction">
+            <summary>
+             Delegate of custom initialization function.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModule`1.CustomCrossoverFunction">
+            <summary>
+             Delegate of custom crossover function.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModule`1.CustomMutationFunction">
+            <summary>
+             Delegate of custom mutation function.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.InitializePopulation">
+            <summary>
+             Initialization operation on all organisms.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.DefaultInitializePopulation">
+            <summary>
+             Default initialization method, which is overridden by specific GA module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.MutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> The index of the parent in the organism population. </param>
+            <param name="childIdx"> The index of the mutated child in the organism population. </param>
+            <param name="NoMutate"> Flag for not mutate parent and simply copy the parent to assign the child. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             The default chromosome-based mutation operation, overridden by specific GA module.
+            </summary>
+            <param name="parentIdx"> The index of the parent in the organism population. </param>
+            <param name="childIdx"> The index of the mutated child in the organism population. </param>
+            <param name="NoMutate"> Flag for not mutate parent and simply copy the parent to assign the child. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.GenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Function of this module that generates a pair of children from a pair of parents, via crossover operation.
+            </summary>
+            <param name="fatherIdx"> The index of the father in the organism population. </param>
+            <param name="motherIdx"> The index of the mother in the organism population. </param>
+            <param name="child1Idx"> The index of the first crossovered child in the organism population. </param>
+            <param name="child2Idx"> The index of the second crossovered child in the organism population. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GAModule`1.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             The default crossover operation that generates a pair of children from a pair of parents.
+            </summary>
+            <param name="fatherIdx"> The index of the father in the organism population. </param>
+            <param name="motherIdx"> The index of the mother in the organism population. </param>
+            <param name="child1Idx"> The index of the first crossovered child in the organism population. </param>
+            <param name="child2Idx"> The index of the second crossovered child in the organism population. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GASolver">
+            <summary>
+             A generic GA solver that employs at least one GA encoding module to solve an optimization problem
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.noImprovementLimit">
+            <summary>
+             Limit of no improvement on best solution so far.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.iterationLimit">
+            <summary>
+             Iteration limit for termination.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.evalutionLimit">
+            <summary>
+             Evaluation limit on objective function for termination.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.cpuTimeLimit">
+            <summary>
+            CPU time limit for GA evolution (in min.)
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.EliteOrganismGenerator">
+            <summary>
+             Custom function that generate an elite organism.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.CustomOrganismInitializer">
+            <summary>
+             Custom function that generate an elite organism for the initial population.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GASolver.InExperimentRun">
+            <summary>
+             Flag for executing experiment runs.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.AppendCustomSolutionDisplayObjectsToExcelFile">
+            <summary>
+             An event fired when the experimental run try to save the information of the 
+             so far the best solution to Excel file. If users have their own information
+             about the solution, subscribe this event by providing the list of objects 
+             that are related to the decoded best solution. For example, a GDI+ Paint 
+             event handling function that draw the solution on a panel; a MS Chart component
+             depicting the Gantt chart of the solution; a rich text box displaying the 
+             details of the solution, or a Paint event handling function that draw the 
+             best solution.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.OneEvolutionIterationCompleted">
+            <summary>
+             Event for subscription when an iteration is accomplished.
+             Users may therefore update their counters.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveValueImproved">
+            <summary>
+              Event for subscription when the objective is improved.
+              Users may update the visual display of their best solutions.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.OneExperimentRunCompleted">
+            <summary>
+             Event for subscription when a GA experiment run optimization is completed.
+             Users may display or save the obtained best solution.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.OneNormalRunCompleted">
+            <summary>
+             Event for subscription when a GA optimization is completed.
+             Users may display or save the obtained best solution.
+            </summary>
+        </member>
+        <member name="E:OmniSoftwareStudio.OrganismGA.GASolver.ProgressPercentageAdvanced">
+            <summary>
+             Event for subscription when the number of experiment runs 
+             advances a percentage of completed runs with respect to the 
+             total runs. Users may therefore update their progress bar.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.#ctor">
+            <summary>
+             Default constructor.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.OnGetCustomSolutionDisplayObjects(System.Object[]@)">
+            <summary>
+             The function called by the management panel that fires 
+             GetCustomSolutionDisplay event to add the custom displaying 
+             objects to the Excel output file.
+            </summary>
+            <param name="visualizationObjects"> The UI objects that represents the best solution; e.g., a Chart, a data control, a drawn panel. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.LoadParameterSettingString(System.String)">
+            <summary>
+             Change GA parameters of this solver from a well-formated string.
+            </summary>
+            <param name="settingString"> The parameter setting string. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CloneParameters(OmniSoftwareStudio.OrganismGA.GASolver)">
+            <summary>
+             Set the parameter setting from other GA solver.
+            </summary>
+            <param name="targetSolver"> The target solver. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateManagementPanel(System.Windows.Forms.Panel)">
+            <summary>
+             Create a management panel for this solver. The created panel can be  inserted
+             into any container control of a win-form application.
+            </summary>
+            <param name="hostPanel"> The host panel that accommodates the management panel. </param>
+            <returns> The created management panel object. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateManagementPanelInAdvance(System.Windows.Forms.Control)">
+            <summary>
+             Static function that creates a GA management panel while the GA solver is not instantiated yet.
+            </summary>
+            <param name="hostPanel"> The host control. </param>
+            <returns></returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ExecuteAnExperimentRun">
+            <summary>
+             Execute a complete experiment run of GA optimization.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsInIntegerArray(System.Object[])">
+            <summary>
+             目標函數計算，僅有一段染色體。
+             Evaluate objective value  for an organism consisting of just one integer chromosome.
+            </summary>
+            <param name="organism"> The organism. </param>
+            <returns> Objective value of the organism. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreatePermutationGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Int32})">
+            <summary>
+             Create a Permutation Encoded GA model whose organism is simply a 
+             chromosome segment encoded in integer type for permutation encoding scheme.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="numberOfGenes"> Number of genes (integer variables) specified in this GA module. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for an organism represented by an integer array. </param>
+            <returns> A GA solver for a permutation encoded segment of chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateUniformGroupingGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,System.Int32,OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Int32})">
+            <summary>
+             Create a Uniform Grouping Encoded GA model whose organism is 
+             simply a chromosome segment encoded in integer type for uniform grouping optimization.
+             Each item can be grouped into any group.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="numberOfGenes"> Number of genes (integer variables) specified in this GA module. </param>
+            <param name="numberOfGroup"> Number of groups. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for an organism represented by an group number encoded integer array. </param>
+            <returns> A GA solver for a uniform grouping integer encoded segment of chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateNonuniformGroupingGASovler(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,System.Int32[],OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Int32},System.Boolean)">
+            <summary>
+             Create a Non-uniform Grouping Encoded GA model whose organism is
+             simply a chromosome segment encoded in integer type for nonuniform grouping optimization.
+             Each item has its own limit of group number.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="numberOfGenes"> Number of genes (items) specified in this GA module. </param>
+            <param name="groupBounds"> Numbers of groups allowed for all items where different items might have different numbers. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for an organism represented by an group number encoded integer array. </param>
+            <param name="acceptExceedingBounds"></param>
+            <returns> A GA solver for a non-uniform grouping integer encoded segment of chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateIntegerNumberGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,System.Int32[],System.Int32[],OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Int32},System.Boolean)">
+            <summary>
+             Create an Integer Number Encoded GA model whose organism is simply
+             a chromosome segment encoded in integer type.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="numberOfGenes"> Number of genes (integer variables) specified in this GA module. </param>
+            <param name="lowerBounds"> Lower bounds of variables. </param>
+            <param name="upperBounds"> Upper bounds of variables. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for a solution represented as an array of integers. </param>
+            <param name="acceptExceedingBounds"> Whether exceeding the bounds is allowed. </param>
+            <returns> A GA solver for an integer encoded segment of chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsAByteArray(System.Object[])">
+            <summary>
+              Evaluate objective value  for an organism consisting of just one integer chromosome segment.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> Objective value of the organism.  </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateBinaryGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Byte})">
+            <summary>
+             Create a Binary Number Encoded GA model whose organism 
+             is simply a chromosome segment encoded in Binary values.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for a solution represented as an array of bytes whose values are 0 or 1. </param>
+            <param name="numberOfGenes"> Number of genes (0 or 1 variables) specified in this GA module. </param>
+            <returns> A GA solver for a segment of binary value encoded chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsADoubleArray(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of just one double value encoded chromosome segment.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateRealNumberGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,System.Int32,System.Double[],System.Double[],OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation{System.Double},System.Boolean)">
+            <summary>
+             Create a Real Number Encoded GA model whose organism is 
+             simply a chromosome segment encoded in Double type.
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function for a solution represented as an array of double. </param>
+            <param name="acceptExceedingBounds"></param>
+            <param name="lowerBounds"> Lower bounds of variables. </param>
+            <param name="upperBounds"> Upper bounds of variables. </param>
+            <param name="numberOfGenes"> Number of genes (integer variables) specified in this GA module. </param>
+            <returns> A GA solver for a segment of double value encoded chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsTwoIntArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of two segments of integer value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateIntegerIntegerGASolver(OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Int32,System.Int32})">
+            <summary>
+             Create a complex GA model whose organism consists of two integer encoded chromosomes.
+            </summary>
+            <param name="IntegerTypeGA1"> First GA type can be Permutation, Uniform/Non-uniform Grouping, Integer Number. </param>
+            <param name="numberOfGenes1"> Gene number of the first chromosome. </param>
+            <param name="pars1"> Associated data packed as an object[] array. </param>
+            <param name="IntegerTypeGA2"> Second GA type can be Permutation, Uniform/Non-uniform Grouping, Integer Number. </param>
+            <param name="numberOfGenes2"> Gene number of the second chromosome. </param>
+            <param name="pars2"> Associated data packed as an object[] array. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates two int[] encoded chromosomes. </param>
+            <returns> A GA solver for evolving an organism consisting of two interger encoded chromosomes. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsTwoByteArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of two segments of binary value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateBinaryBinaryGASolver(System.Int32,System.Int32,OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Byte,System.Byte})">
+            <summary>
+             Create a complex GA model whose organism consists of two byte encoded chromosomes.
+            </summary>
+            <param name="numberOfGenes1"> Gene number of the first chromosome. </param>
+            <param name="numberOfGenes2"> Gene number of the second chromosome. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates two byte[] encoded chromosomes. </param>
+            <returns> A GA solver for evolve an organism consisting of two binary encoded chromosomes. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsTwoDoubleArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of two segments of double value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateDoubleDoubleGASolver(System.Int32,System.Object[],System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Double,System.Double})">
+            <summary>
+             Create a complex GA model whose organism consists of two double encoded chromosomes.
+            </summary>
+            <param name="numberOfGenes1"> Gene number of the first chromosome. </param>
+            <param name="pars1"> Associated data packed as an object[] array. </param>
+            <param name="numberOfGenes2"> Gene number of the second chromosome. </param>
+            <param name="pars2"> Associated data packed as an object[] array. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates two double[] encoded chromosomes. </param>
+            <returns> A GA solver for evolve an organism consisting of two double-value encoded chromosomes. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsIntAndDoubleArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of one segment of integer chromosomes and one segment of double-value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateIntegerDoubleGASolver(OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Int32,System.Double})">
+            <summary>
+             Create a complex GA model whose organism consists of one int and one double encoded chromosomes.
+            </summary>
+            <param name="IntegerTypeGA1"> First GA type can be Permutation, Uniform/Non-uniform Grouping, Integer Number. </param>
+            <param name="numberOfGenes1"> Gene number of the first chromosome. </param>
+            <param name="pars1"> Associated data packed as an object[] array. </param>
+            <param name="numberOfGenes2">> Gene number of the second chromosome. </param>
+            <param name="pars2"> Associated data packed as an object[] array. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates an int[] and double[] encoded chromosomes. </param>
+            <returns> A GA solver for evolve an organism consisting of one int- and one double-value encoded chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsIntAndByteArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of one segment of integer chromosomes and one binary-value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateIntegerBinaryGASolver(OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],System.Int32,OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Int32,System.Byte})">
+            <summary>
+             Create a complex GA model whose organism consists of one int and one byte encoded chromosomes.
+            </summary>
+            <param name="IntegerTypeGA1"> First GA type can be Permutation, Uniform/Non-uniform Grouping, Integer Number. </param>
+            <param name="numberOfGenes1"> Gene number of the first chromosome. </param>
+            <param name="pars1"> Associated data packed as an object[] array. </param>
+            <param name="numberOfGenes2">> Gene number of the second chromosome. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates an int[] and byte[] encoded chromosomes. </param>
+            <returns> A GA solver for evolve an organism consisting of one int- and one binary-value encoded chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsDoubleAndByteArrays(System.Object[])">
+            <summary>
+             Evaluate objective value  for an organism consisting of one segment of double chromosomes and one binary-value encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism to be evaluated. </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateDoubleByteGASolver(System.Int32,System.Object[],System.Int32,OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation{System.Double,System.Byte})">
+            <summary>
+             Create a complex GA model whose organism consists of one double and one byte encoded chromosomes.
+            </summary>
+            <param name="numberOfGenes1"> Gene number of the double encoded chromosome. </param>
+            <param name="pars1"> Associated data packed as an object[] array. </param>
+            <param name="numberOfGenes2">> Gene number of the byte encoded chromosome. </param>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The objective function that evaluates an double[] and byte[] encoded chromosomes. </param>
+            <returns> A GA solver for evolve an organism consisting of one double- and one binary-value encoded chromosome. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveEvaluationAsNIntegerArrays(System.Object[])">
+            <summary>
+             Evaluate objective value for an organism consisting of N segments of permutation encoded chromosomes.
+            </summary>
+            <param name="organism"> The organism. </param>
+            <returns> The objective value computed. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateNPermutationGASolver(System.Int32[],OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.NArraysSolutionEvaluation{System.Int32})">
+            <summary>
+             Create a complex GA model whose organism consists of N permutation encoded chromosomes.
+            </summary>
+            <param name="numberOfGenesArray"> Integer array consists of the numbers of genes in each permutation chromosome. </param>
+            <param name="optimizationType"> Optimization problem. </param>
+            <param name="objFunction" >A function delegate that returns double value while taking an int[][] argument. </param>
+            <returns> A GA solver that evolves organisms with N permutation chromosomes. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ConstructTwoModuleInfo(OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[])">
+            <summary>
+             Prepare a double[][] array to represent the GA parameters.
+            </summary>
+            <param name="IntegerTypeGA1"></param>
+            <param name="numberOfGenes1"></param>
+            <param name="pars1"></param>
+            <param name="IntegerTypeGA2"></param>
+            <param name="numberOfGenes2"></param>
+            <param name="pars2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.#ctor(OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.ObjectiveFunctionDelegate,OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[],OmniSoftwareStudio.OrganismGA.GAModuleType,System.Int32,System.Object[])">
+            <summary>
+             Specific constructors for creating a GA solver whose organism is a pair of chromosomes.
+             This constructor is for general combinations of two encoding types.
+             The objective function take an organism represented as an array of object; i.e., object[] organism. 
+             Each object is actually a chromosome segment. Therefore each object must be casts as an array 
+             of specific type; e.g., int[] chromosome1 = (int[])organism[0]; double[] chromosome2 = (double[])organism[1]
+            </summary>
+            <param name="optimizationType"> Optimization type. </param>
+            <param name="objectiveFunction"> The delegate to the objective evaluation function. </param>
+            <param name="GAType1"> The encoding type of the first GA module. </param>
+            <param name="numberOfGenes1"> Number of genes specified in the first GA module. </param>
+            <param name="pars1"> Extra parameters used to define the first module.  </param>
+            <param name="GAType2"> The encoding type of the second GA module. </param>
+            <param name="numberOfGenes2">  Number of genes specified in the first GA module. </param>
+            <param name="pars2"> Extra parameters used to define the second module. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.#ctor(OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.ObjectiveFunctionDelegate,System.Object[][])">
+            <summary>
+             General Constructor for constructing a solver that deal with multiple GA modules.
+             To employ an organism based GA solver, user must provide necessary information about each GA module.
+             In addition, optimization type, and a function delegate that computes and returns the objective value 
+             must be provided. 
+             The objective function take an organism represented as an array of object; i.e., object[] organism. 
+             Each object is actually a chromosome segment. Therefore each object must be casts as an array 
+             of specific type; e.g., int[] chromosome1 = (int[])organism[0]; double[] chromosome2 = (double[])organism[1]
+            </summary>
+            <param name="opType">  Optimization type.  </param>
+            <param name="objectFunction"> The delegate to the objective evaluation function.  </param>
+            <param name="moduleInfo"> The list of information about GA modules to be defined. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.EnableOrganismCustomInitialization(OmniSoftwareStudio.OrganismGA.OrganismInitializerDelegate)">
+            <summary>
+             Enable the custom initialization operation by providing a delegate of a function that receives
+             reference of an organism to assign values to genes of all chromosomes on the organism.
+            </summary>
+            <param name="organismInitFunction"> A custom function delegate for performing custom initialization. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.EnableModuleCustomInitialization``1(System.Int32,OmniSoftwareStudio.OrganismGA.CustomInitializerDelegate{``0})">
+            <summary>
+             Set custom initialization function for a GA module.
+            </summary>
+            <param name="moduleSequence"> The index of the GA module. </param>
+            <param name="initFunction"> The function delegate. </param>
+            <returns> Success or fail. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.EnableModuleCustomCrossover``1(System.Int32,OmniSoftwareStudio.OrganismGA.CustomCrossoverDelegate{``0})">
+            <summary>
+             Set custom crossover function for a GA module.
+            </summary>
+            <param name="moduleSequence"> The index of the GA module. </param>
+            <param name="crossoverFunction"> The function delegate. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.EnableModuleCustomMutation``1(System.Int32,OmniSoftwareStudio.OrganismGA.CustomMutationDelegate{``0})">
+            <summary>
+             Set custom mutation function for mutate a parent into a child.
+            </summary>
+            <param name="moduleSequence"> The index of the GA module. </param>
+            <param name="mutationFunction"> The function delegate. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.CreateASpecificGASolver(OmniSoftwareStudio.OrganismGA.OptimizationType,OmniSoftwareStudio.OrganismGA.ObjectiveFunctionDelegate,System.Object[][],System.Boolean)">
+            <summary>
+             Used by the constructor to allocate the necessary memory for the object.
+            </summary>
+            <param name="optimizationType">  Optimization type.  </param>
+            <param name="objectFunction"> The delegate to the objective evaluation function. </param>
+            <param name="moduleInfo"> The list of module information. </param>
+            <param name="acceptExceedingBounds"> Default is false. </param>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.GAModules">
+            <summary>
+             The list of GA modules.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.Organisms">
+            <summary>
+             Read-only access to the contents of the set of organisms
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.MutationMode">
+            <summary>
+             The mutation mode used to perform mutation.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.PopulationSize">
+            <summary>
+             Size of population, which is editable by the user.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.CrossoverRate">
+            <summary>
+             Crossover rate for the base of the population.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.MutationRate">
+            <summary>
+             Mutation rate for the base of the total number of genes in the population.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SelectionMode">
+            <summary>
+             Genetic operation of the selection.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationExitEnabled">
+            <summary>
+            Enable or disable termination condition on iteration reaching specified limit.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationLimit">
+            <summary>
+            The iteration limit to terminate the GA evolution.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationCount">
+            <summary>
+             Current count on iterations advanced.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.EvaluationExitEnabled">
+            <summary>
+            Enable or disable termination condition on objective function evaluation reaching specified limit.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.EvalutionLimit">
+            <summary>
+             The count limit for objective function evaluations to stop the optimization procedures.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.EvaluationCount">
+            <summary>
+             Current count on objective function evaluations.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.NoImprovementExitEnabled">
+            <summary>
+            Enable or disable termination condition on successive counts on improvement on best solution reaching the specified limit.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.NoImprovementLimit">
+            <summary>
+             The count limit for no improvement to stop the optimization procedures.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.NoImprovementCount">
+            <summary>
+             Current count on successive no improvement on best solution.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.CpuTimeExitEnabled">
+            <summary>
+            Enable or disable termination condition on CPU execution time reaching the specified limit.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.CPUTimeLimit">
+            <summary>
+             CPU time limit in seconds to stop the optimization procedures.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.CpuTimeElasped">
+            <summary>
+             Current CPU time elapsed.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.ExecutionExitCondition">
+            <summary>
+             The condition that end the execution.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationBestObjective">
+            <summary>
+             The objective value of the iteration best solution
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationAverage">
+            <summary>
+             The objective average of the objective values obtained by the population.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestObjective">
+            <summary>
+             The objective value of the so far the best solution.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestSolution">
+            <summary>
+             The object list compose the so far the best solution.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.EliteInitializationRatio">
+            <summary>
+             When function delegate EliteOrgamismGenerator is specified and valid, the ratio of population 
+             will be initialized by the elite organism generator.
+            </summary>        
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.ObjectiveAveragesOfAnExperimentRun">
+            <summary>
+             The list of the average objective values obtained from an experiment run.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.IterationBestObjectivesOfAnExperimentRun">
+            <summary>
+             The list of the iteration best objective values obtained from an experiment run.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestObjectivesOfAnExperimentRun">
+            <summary>
+             The list of the so far the best objective values obtained from an experiment run.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.EnableEliteOrganismInitialization(OmniSoftwareStudio.OrganismGA.EliteOrganismGeneratorDelegate)">
+            <summary>
+            User prepare a function that generates an elite initial organism, which is an object[] object.
+            </summary>
+            <param name="eliteGenerator"> The function delegate of the elite organism generator. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.SetExecutionDetails(System.Int32)">
+            <summary>
+             Automatically set execution parameters to accomplish either a fast execution or a deep execution.
+            </summary>
+            <param name="level"> Evolution power level. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ResetDataStructure">
+            <summary>
+             Reset evolution related data structure.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.Reset(System.Object[])">
+            <summary>
+             This function reallocate memory for the GA computation subject to newly
+             specified properties; e.g, population size.In addition, the initial population
+             of chromosomes are initialized.
+            </summary>
+            <param name = "eliteSolution" > An elite solution inserted into the initial population </param >
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.RandomizeIndexes(System.Int32)">
+            <summary>
+             This function setup the indexes from 0 to upLimit-1 in index array (int[] indexes).
+             Then, shuffle their orders randomly. 
+             This function is called to shuffle the index orders of parent population to support 
+             pair-wise crossover operation. If x pairs of parents are to be crossovered, then
+             the first 2x indexes are the chromosome indexes of the x pair parents.
+            </summary>
+            <param name="upLimit"> Randomize the value stored in the indexes array. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.GetChromosomeDataType(OmniSoftwareStudio.OrganismGA.GAModuleType)">
+            <summary>
+             Get the associated data type.
+            </summary>
+            <param name="moduleType"> The type of GA module. </param>
+            <returns> The type of the specified GA module. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.InitializePopulation">
+            <summary>
+             Perform initialization operation.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ExecuteToEnd">
+            <summary>
+             Default method that carryout the whole GA computation without any interruption.
+             Used in experiment runs.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.TerminationConditionMet">
+            <summary>
+             A function that determine whether stopping condition is met. By default, the iteration 
+             limit is used and checked for termination. Derived class can override it.
+            </summary>
+            <returns> Success or not.</returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ExecuteOneIteration">
+            <summary>
+             Standard GA computation procedure. However, derived classes may override it.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.ProgressPercentage">
+            <summary>
+             During experiment runs, the percentage of runs completed with respect to 
+             the total number of runs required.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestSolutionAsAPermutationArray">
+            <summary>
+             The computed so far the best solution encoded as a single integer permutation array.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestSolutionAsAnIntegerArray">
+            <summary>
+              The computed so far the best solution encoded as a single integer array.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestSolutionAsADoubleArray">
+            <summary>
+             The computed so far the best solution encoded as a single double array.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GASolver.SoFarTheBestSolutionAsABinaryArray">
+            <summary>
+             The computed so far the best solution encoded as a single byte array.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.OnNormalEvoluationRunCompleted">
+            <summary>
+             Fire OneNormalRunCompleted event when GA solver complete a normal run.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ComputeObjectiveValueOfAnIndexedOrganism(System.Int32)">
+            <summary>
+             Evaluate the objective of an organism.
+            </summary>
+            <param name="idx"> The index to the targeted organism </param>
+            <returns> The objective value. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ComputeObjectiveValuesAndUpdateBestInfo">
+            <summary>
+             Standard function that evaluates original objective values for parent and children chromosomes.
+             During the computation, iteration best is identified and checked with the so far the best.
+             The so far the best objective and solution will be updated, if the iteration best surpass the so far the best.
+             Specifically, this function calls the user-supplied objective value evaluation function to
+             evaluate each chromosome and put values to objectiveValues array. 
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.SetSoFarTheBestValueAndSolution(System.Int32)">
+            <summary>
+             Replace the so far the be objective and solution.
+            </summary>
+            <param name="iterationBestIdx"> The index to the organism set. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.UpdateBestInfo(System.Int32)">
+            <summary>
+             Check if the iteration best can replace the so far the best objective and solution.
+            </summary>
+            <param name="iterationBest"> The index to the iteration best </param>
+            <returns> Replacement is successful or not </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.SetFitnessFromObjectives">
+            <summary>
+             This function convert original objective values into positive fitness values, such that
+             the better chromosome receives the larger amount of fitness. Notice that the worst one
+             still receive the least amount of positive fitness value.
+             Specifically, the function transform each value in objectiveValues array to the value in
+             fitnessValues array.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.PerformCrossoverOperation">
+            <summary>
+             Standard crossover operation in a GA iteration. With the help of a shuffled index array (indexes array)
+             parent chromosomes are paired for crossover operation.
+             This standard function calls derived class overridden generateAPairOfCrossoveredOffspring() function to 
+             let that function access parent chromosome (via indexes) and set gene values for the children chromosome
+             (via indexes).
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.SimulateMutatedGenesMarkingAndPackParentIndexesReturnBound">
+            <summary>
+             This function simulate the traditional mutation operation on gene levels.
+             Mutated genes are selected and corresponding parent is identified.
+             Mutated Parent indexes are packed in indexes array and the number of mutated
+             parents is returned.
+            </summary>
+            <returns> Number of mutated parents </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.GenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Given two parent indexes, and two children indexes, this function perform crossover operation. The gene values 
+             of the children will be set by this function. This function must be overridden by the derived classes.
+            </summary>
+            <param name="fatherIdx"> index of father chromosome. </param>
+            <param name="motherIdx"> index of mother chromosome.  </param>
+            <param name="child1Idx"> index of child 1 chromosome. </param>
+            <param name="child2Idx"> index of child 2 chromosome. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.MutateAParentToSetAMutatedChild(System.Int32,System.Int32)">
+            <summary>
+             Mutate a parent to assign a child.
+            </summary>
+            <param name="parentIdx"> Parent index in the organism array. </param>
+            <param name="childIdx"> Child index in the organism array. </param>
+            <returns> Success or not. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.PerformGeneBasedMutateOperation">
+            <summary>
+             This function conducts one of the primary operation in GA computation. Since different GA codings
+             had different mutation operations, no standard mutation operation is available.
+             Derived class must override this function. 
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.PerformChromosomeBasedMutationOperation">
+            <summary>
+             Perform mutation for chromosome base mutation mode, where the number of mutated children 
+             is determined first, and then parents are cloned to randomly mutate their genes.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.GetBestChromosomeIDs(System.Int32)">
+            <summary>
+             Object a list of indexes of a number of best organisms.
+            </summary>
+            <param name="numberOfInstances"> Number of best organisms required. </param>
+            <returns> The list of indexes of be organisms. </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.PerformSelectionOperation">
+            <summary>
+             This function provide standard GA selection operation. However, it allowed derived classes to override it.
+             Two selection modes are provided in this function: deterministic and stochastic.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ReplaceOneChromosomeWithTheOther(System.Int32,System.Int32)">
+            <summary>
+             Replace gene values of an indexed chromosome with another one.
+            </summary>
+            <param name="target"> Index of the chromosome to be replaced. </param>
+            <param name="source" >Index of the chromosome to be duplicated. </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GASolver.ExecuteExperimentRuns(System.Windows.Forms.Control)">
+            <summary>
+             Automatically execute a serial of experiments runs grouped with different GA
+             parameter settings. The statistics of the computed results are stored to an
+             Excel file as well as detailed information of each run. Custom display 
+             objects about the computed best solution are also included in the output
+             Excel file.
+            </summary>
+            <param name="host"></param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GAModuleType">
+            <summary>
+             The type of chromosome segments (modules)
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.Binary">
+            <summary>
+             Binary number encoded
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.Permutation">
+            <summary>
+             Permutation integer encoded
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.UniformGrouping">
+            <summary>
+             Uniform Grouping integer encoded
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.NonUniformGroupoing">
+            <summary>
+            Non-uniform Grouping integer encoded
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.IntegerNumber">
+            <summary>
+             Integer number encoded 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GAModuleType.RealNumber">
+            <summary>
+             Real number encoded
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.OptimizationType">
+            <summary>
+             Type of optimization problem.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.OptimizationType.Min">
+            <summary>
+            A minimization problem
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.OptimizationType.Max">
+            <summary>
+            A maximization problem
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.OptimizationType.Goal">
+            <summary>
+            A goal matching problem
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.SelectionMode">
+            <summary>
+             Type of GA selection procedure
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.SelectionMode.Deterministic">
+            <summary>
+            No uniqueness in deterministic mode
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.SelectionMode.Stochastic">
+            <summary>
+            Stochastic is pure
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.SelectionMode.UniqueCheckGenes">
+            <summary>
+            UniqueCheckGenes contains Deterministic
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.SelectionMode.UniqueCheckObjective">
+            <summary>
+            UniqueCheckObjective contains Deterministic
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.TerminationCondition">
+            <summary>
+             Case of a termination of GA computation.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.TerminationCondition.StillRunning">
+            <summary>
+             The evolution is still running.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.TerminationCondition.IterationLimitReached">
+            <summary>
+             The termination happens at the iteration count reached the limit.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.TerminationCondition.ObjectiveEvaluationLimitExceeded">
+            <summary>
+             The termination happens at the objective function evaluation count reached the limit.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.TerminationCondition.SuccessiveNoImprovementLimitReached">
+            <summary>
+             The termination happens at the count of no successive improvement reached the limit.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.TerminationCondition.CPUTimeLimitExceeded">
+            <summary>
+             The termination happens at the CPU time spent reached the specified limit.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.MutationMode">
+            <summary>
+             Mutation operation mode selection.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.MutationMode.ChromosomeBased">
+            <summary>
+             Determine number of mutated organisms first then clone and mutate them.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.MutationMode.GeneBased">
+            <summary>
+             Determine the locations of mutated genes first, the identify their parents to generate mutated children.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio">
+            <summary>
+             When custom provides elite solution generator, the ratio of initial population 
+             will be assigned by the elite solution generator.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.NoneAvailable">
+            <summary>
+             No ratio is available, since no custom initialization is applicable
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.OnePercent">
+            <summary>
+             Just one organism is custom initialized by provided custom initialization function
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.OnlyOne">
+            <summary>
+             Only 1% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.OneTenth">
+            <summary>
+             Only 10% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.TwoTenth">
+            <summary>
+             Only 20% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.ThreeTenth">
+            <summary>
+             Only 30% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.FourTenth">
+            <summary>
+             Only 40% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.FiveTenth">
+            <summary>
+             50% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.SixTenth">
+            <summary>
+             60% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.SevenTenth">
+            <summary>
+             70% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.EightTenth">
+            <summary>
+             80% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.NineTenth">
+            <summary>
+             90% of the population is custom initialized.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.InitializationEliteRatio.All">
+            <summary>
+             All organisms of the population are custom initialized.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.ObjectiveFunctionDelegate">
+            <summary>
+             The objective function delegate that represents the objective evaluation function for the GA evolution.
+             The function take an organism input parameter to evaluate its objective value.
+             The organism is represented as an array of object. Each element is a chromosome segment. Therefore, in 
+             the function programmer needs to cast each element to an array of the data type that encodes the chromosome.
+            </summary>
+            <param name="organism"> The organism to be evaluated. Note that an organism consists of a set of encoded chromosomes. </param>
+            <returns> Objective value. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.CustomCrossoverDelegate`1">
+            <summary>
+             The custom GenerateAPairOfCrossoveredOffspring function delegate.
+            </summary>
+            <param name="father"> The father chromosome. </param>
+            <param name="mother"> The mother chromosome. </param>
+            <param name="child1"> The first child chromosome. </param>
+            <param name="child2"> The second child chromosome. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.CustomMutationDelegate`1">
+            <summary>
+             The custom CustomMutationFunction function delegate.
+            </summary>
+            <typeparam name="T"> int, byte, or double </typeparam>
+            <param name="parent"> The parent chromosome. </param>
+            <param name="offspring"> The child chromosome. </param>
+            <param name="NoMutate"> Flag for not mutate parent and simply copy the parent to assign the child. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.OneArraySolutionEvaluation`1">
+            <summary>
+             Object function delegate that evaluates a chromosome encoded in type T. This case is 
+             for a GA solver whose organism simply consists of a chromosome segment.
+            </summary>
+            <typeparam name="T"> int, byte, or double </typeparam>
+            <param name="chromosome"> The organism consists of one array of type T. </param>
+            <returns> Objective value. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.NArraysSolutionEvaluation`1">
+            <summary>
+             Object function delegate that evaluates an array of chromosomes encoded in type T. This case is 
+             for a GA solver whose organism consists of an array of chromosomes encoded in the same type. 
+             For example, a solution consists of 3 permutation encoded chromosomes with different sizes.
+            </summary>
+            <typeparam name="T"> int, byte, or double </typeparam>
+            <param name="chromosomeArray"> The organism consists a list of arrays of type T.</param>
+            <returns> Objective value. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.TwoArraySolutionEvaluation`2">
+            <summary>
+             Object function delegate that evaluates two chromosomes encoded in type S and T,
+             respectively. This case is for a GA solver whose organism simply consists of
+             a pair of chromosomes.
+            </summary>
+            <typeparam name="S"> The encoded type of the first chromosome. </typeparam>
+            <typeparam name="T"> The encoded type of the second chromosome. </typeparam>
+            <param name="chromosome1"> The first chromosome segment. </param>
+            <param name="chromosome2"> The second chromosome segment.</param>
+            <returns> Objective value. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.CustomInitializerDelegate`1">
+            <summary>
+             Custom function delegate for initializing a chromosome.
+            </summary>
+            <typeparam name="T"> Either int, double, or byte. </typeparam>
+            <param name="chromosomes"> The target chromosome in an organism. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.OrganismInitializerDelegate">
+            <summary>
+            Custom function delegate for initializing the full organism.
+            </summary>
+            <param name="organism"> The target organism to be assigned with initial values. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.EliteOrganismGeneratorDelegate">
+            <summary>
+             Custom function delegate for setting values of an organism
+            </summary>
+            <returns> A organism represented as an array of object, each object is an array of an encoding data type. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.OneSegmentInitializationDelegate`1">
+            <summary>
+             Custom function delegate for initializing a one-segment GA model.
+            </summary>
+            <typeparam name="T"> The target encoding data type. </typeparam>
+            <returns> A list of instances of an encoding data type. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.TwoSegmentInitializationDelegate">
+            <summary>
+             Custom function delegate for initialing a two-segment GA model.
+            </summary>
+            <returns> A object list with two objects, each is an instance array of an encoding data type. </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.CustomDisplay">
+            <summary>
+             Custom function delegate for supplying custom display objects about
+             the so far the best solution that will be stored in the Excel file.
+            </summary>
+            <param name="visualizationObjects"> The UI objects to be stored in Excel file. </param>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GroupingGAModule">
+            <summary>
+             GA operation module for an integer grouping encoding chromosome.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.#ctor(System.Int32,System.Int32)">
+            <summary>
+             Constructor of an integral grouping encoding GA module. All
+             items share the same group selection.
+            </summary>
+            <param name="numberOfVariables"> Number of items </param>
+            <param name="groupNumber"> Number of groups </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.#ctor(System.Int32,System.Int32[])">
+            <summary>
+             Constructor of an integral grouping encoding GA module, where each
+             item has its own number of group selections. 
+            </summary>
+            <param name="numberOfVariables"> Number of items </param>
+            <param name="groupBounds"> The numbers of group selection of all items </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.ToString">
+            <summary>
+             The title of this module.
+            </summary>
+            <returns> Module title </returns>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GroupingGAModule.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GroupingGAModule.CrossoverType">
+            <summary>
+             Permutation encoding crossover type; whose value is an instance of enum type GroupingCrossOver
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GroupingGAModule.MutationType">
+            <summary>
+             Mutation type for an integer permutation encoding GA problem; whose value is an instance of enum type GroupingMutation
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.GroupingGAModule.NumberOfGroups">
+            <summary>
+             In uniform grouping, the number of groups.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deal with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.DefaultInitializePopulation">
+            <summary>
+             Initialize the gene values (group selection ID) of the chromosomes (items)handled by this module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Function to let this module to generate a pair of offspring chromosomes from a pair of parents.
+            </summary>
+            <param name="fatherIdx"> Index to the father organism </param>
+            <param name="motherIdx"> Index to the mother organism </param>
+            <param name="child1Idx"> Index to the first child to be generated </param>
+            <param name="child2Idx"> Index to the second child to be generated </param>
+            <returns></returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.GroupingGAModule.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> Index to the parent organism </param>
+            <param name="childIdx"> Index to the child to be generated </param>
+            <param name="NoMutate"> Flag for simply copy parent to child. </param>
+            <returns></returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GroupingCrossOver">
+            <summary>
+             Enumerations of crossover operators for a grouping encoded GA module.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GroupingCrossOver.OnePoint">
+            <summary>
+             One point cut
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GroupingCrossOver.TwoPoint">
+            <summary>
+             Two-point cut
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GroupingCrossOver.NPoint">
+            <summary>
+             N-point cut
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.GroupingMutation">
+            <summary>
+             Enumerations of mutation operators for a grouping encoded GA module.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GroupingMutation.RandomMutation">
+            <summary>
+             Randomly select an item and randomly set its new group.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.GroupingMutation.Inversion">
+            <summary>
+             Randomly select a segments of items and swap their groups from both ends pair-widely.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule">
+            <summary>
+             GA solver for integer number encoded chromosome module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.#ctor(System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+             Constructor of an integer number encoded GA module.
+            </summary>
+            <param name="numberOfVariables"> number of variables </param>
+            <param name="mins"> lower bound array </param>
+            <param name="maxs"> upper bound array </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.ToString">
+            <summary>
+             The title of this module.
+            </summary>
+            <returns> Module title </returns>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.CrossoverType">
+            <summary>
+             Selected crossover operator type.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deal with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.DefaultInitializePopulation">
+            <summary>
+             Overridden function that randomly assign integral gene values to the population.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Own crossover operation procedure to generate and set gene values for a pair of 
+             crossovered offspring by referring to a given pair of parent indexes 
+            </summary>
+            <param name="fatherIdx"> index of father chromosome </param>
+            <param name="motherIdx"> index of mother chromosome  </param>
+            <param name="child1Idx"> index of child 1 chromosome </param>
+            <param name="child2Idx"> index of child 2 chromosome </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> Index to the parent organism </param>
+            <param name="childIdx"> Index to the child to be generated </param>
+            <param name="NoMutate"> Flag for simply copy parent to child. </param>
+            <returns> Success or not </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.IntegerNumberGAModule.PerformGeneBasedMutation(System.Double,System.Int32)">
+            <summary>
+             Function to let this module to perform overall mutation operation. The module need 
+             to determine those genes and associated parent chromosomes to create offspring
+             chromosome.
+            </summary>
+            <param name="mutationRate"> Specified mutation rate</param>
+            <param name="startIdx"> The start index of offspring from mutation </param>
+            <returns> Number of mutated children created </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover">
+            <summary>
+             Types of crossover operators
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.Convex">
+            <summary>
+             Convex crossover: X'= alpha X1 + beta X2; x" = beta X1 +alpha X2; alpha + beta = 1; alpha, beat > 0
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.Affine">
+            <summary>
+             Affine crossover: X'= alpha X1 + beta X2; x" = beta X1 +alpha X2;alpha + beta = 1; alpha, beat belong to R
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.Linear">
+            <summary>
+             Linear crossover:  X'= alpha X1 + beta X2; x" = beta X1 +alpha X2;alpha, beat belong to R
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.LargeValueDivided" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.SmallValueDivided" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.MiddleAndOneEndSegments" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.IntegerNumberCrossover.TwoEndSegments" -->
+        <member name="T:OmniSoftwareStudio.OrganismGA.MetaFileHelper">
+            <summary>
+             Interop class for usage of meta file
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.MetaFileHelper.CopyEMFToClipboard(System.IntPtr,System.Drawing.Imaging.Metafile)">
+            <summary>
+             Copy an EMF file to clipboard for pasting.
+            </summary>
+            <param name="hWnd"> Handler to the EMF object </param>
+            <param name="file"> Meta file </param>
+            <returns></returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.PermutationGAModule">
+            <summary>
+             GA operation module for an integer permutation encoding chromosome.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.PermutationGAModule.PairHeuristicValues">
+            <summary>
+             A heuristic value matrix defines the gene to gene heuristic values. This matrix is 
+             required for choosing Heuristic crossover, where the values between a pair of genes
+             are referenced. For example, in a TSP problem, the value is the distance from one
+             city to the other, and the heuristic crossover operator will compose a solution that
+             makes the shorter pair of genes (cities) consecutive.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.#ctor(System.Int32)" -->
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.ToString">
+            <summary>
+             The title of this module.
+            </summary>
+            <returns> Module title </returns>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.PermutationGAModule.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.PermutationGAModule.CrossoverType">
+            <summary>
+             Permutation encoding crossover type; whose value is an instance of enum type PermutationCrossover
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.PermutationGAModule.MutationType">
+            <summary>
+             Mutation type for an integer permutation encoding GA problem; whose value is an instance of enum type PermutationMutation
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deal with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.DefaultInitializePopulation">
+            <summary>
+             Overridden function that randomly assign sequencing gene values to the population
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.OldDefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Perform regular crossover operation on a pair of parents and set gene values to a pair of children
+            </summary>
+            <param name="fatherIdx"> father index on the chromosome array </param>
+            <param name="motherIdx"> mother index on the chromosome array </param>
+            <param name="child1Idx"> the first child index on the chromosome array </param>
+            <param name="child2Idx"> the second child index on the chromosome array </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Perform regular crossover operation on a pair of parents and set gene values to a pair of children
+            </summary>
+            <param name="fatherIdx"> father index on the chromosome array </param>
+            <param name="motherIdx"> mother index on the chromosome array </param>
+            <param name="child1Idx"> the first child index on the chromosome array </param>
+            <param name="child2Idx"> the second child index on the chromosome array </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Overridden mutation operations on permutation encoding GA segment.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.shuffle(System.Int32[])">
+            <summary>
+             Helping function that randomly shuffles the given array of permutation encoded integral array.
+            </summary>
+            <param name="array"> the list of integers </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.ConsecutiveEvaluationForHeuristicCX(System.Int32,System.Int32,System.Int32)">
+            <summary>
+             A function used in heuristic crossover operation
+            </summary>
+            <param name="step"></param>
+            <param name="cid"></param>
+            <param name="geneNext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.PermutationGAModule.CustomCrossoverAPairOfParentsGetTwoChildren(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             To be implemented by derived classes.
+            </summary>
+            <param name="fatherIdx"></param>
+            <param name="motherIdx"></param>
+            <param name="child1Idx"></param>
+            <param name="child2Idx"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.PermutationCrossover">
+            <summary>
+            Newly defined enumeration for flagging the types of mutations and crossover operation on 
+            permutation-encoded GA
+            Defined canonical crossover operators for a permutation encoded GA model
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.PartialMapX">
+            <summary>
+            Canonical crossover operator: partial mapped crossover operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.OrderX">
+            <summary>
+            Canonical crossover operator: ordered crossover operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.PositionOrOrderBasedX">
+            <summary>
+            Canonical crossover operator: position-based and order-based crossover operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.CycleX">
+            <summary>
+            Canonical crossover operator: cycle crossover operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.SubtourX">
+            <summary>
+            Canonical crossover operator: sub tour crossover operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.Heuristic">
+            <summary>
+             TSP-based Heuristic crossover operator.
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationCrossover.Custom">
+            <summary>
+             Customer supplied crossover operator.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.PermutationMutation">
+            <summary>
+             Defined mutation types for a permutation encoded GA model
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Inversion">
+            <summary>
+            Canonical mutation operator 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Swapped">
+            <summary>
+            Canonical mutation operator 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Insertion">
+            <summary>
+            Canonical mutation operator 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Displacement">
+            <summary>
+            Canonical mutation operator 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.ReciprocalExchange">
+            <summary>
+            Canonical mutation operator 
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Custom">
+            <summary>
+             Customer mutation operator
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.PermutationMutation.Heuristic">
+            <summary>
+             Use heuristic matrix information to perform mutation operation.
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.Properties.Resources">
+            <summary>
+              用於查詢當地語系化字串等的強類型資源類別。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.ResourceManager">
+            <summary>
+              傳回這個類別使用的快取的 ResourceManager 執行個體。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.Culture">
+            <summary>
+              覆寫目前執行緒的 CurrentUICulture 屬性，對象是所有
+              使用這個強類型資源類別的資源查閱。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.Pause">
+            <summary>
+              查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.Resetx32">
+            <summary>
+              查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.RunOneStepx32">
+            <summary>
+              查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.RunToEndx32">
+            <summary>
+              查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.Properties.Resources.Stopx32">
+            <summary>
+              查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+            </summary>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.RealNumberGAModule">
+            <summary>
+             GA solver for real number encoded chromosome module.
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.#ctor(System.Int32,System.Double[],System.Double[])">
+            <summary>
+             Constructor of a real number encoding GA module.
+            </summary>
+            <param name="numberOfVariables"> number of variables </param>
+            <param name="mins"> lower bound array </param>
+            <param name="maxs"> upper bound array </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.ToString">
+            <summary>
+             The title of this module.
+            </summary>
+            <returns> Module title </returns>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.ParameterSettingsText">
+            <summary>
+             The text content describing the parameter settings defined in this module.
+            </summary>
+        </member>
+        <member name="P:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.CrossoverType">
+            <summary>
+             Selected crossover operator type
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.BridgeChromosomeWithOrganism(System.Object[][],System.Int32)">
+            <summary>
+             Function for this module to hook up the organism structure. Note that a module simply
+             deal with a chromosome segment of an organism. Therefore, this function is to map 
+             the chromosome segment of this module to the given organisms.
+            </summary>
+            <param name="organisms"> The set of organisms to be linked </param>
+            <param name="sequence"> The sequence id of the chromosome targeted by this module </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.DefaultInitializePopulation">
+            <summary>
+             Overridden function that randomly assign sequencing gene values to the population
+            </summary>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.DefaultGenerateAPairOfCrossoveredOffspring(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Perform regular crossover operation on a pair of parents and set gene values to a pair of children
+            </summary>
+            <param name="fatherIdx"> father index on the chromosome array </param>
+            <param name="motherIdx"> mother index on the chromosome array </param>
+            <param name="child1Idx"> the first child index on the chromosome array </param>
+            <param name="child2Idx"> the second child index on the chromosome array </param>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.DefaultMutateAParentToSetAMutatedChild(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+             Function to let this module to generate a mutated offspring chromosome from a given parent.
+            </summary>
+            <param name="parentIdx"> Index to the parent organism </param>
+            <param name="childIdx"> Index to the child to be generated </param>
+            <param name="NoMutate"> Flag for simply copy parent to child. </param>
+            <returns> Success or not </returns>
+        </member>
+        <member name="M:OmniSoftwareStudio.OrganismGA.RealNumberGAModule.PerformGeneBasedMutation(System.Double,System.Int32)">
+            <summary>
+             Function to let this module to perform overall mutation operation. The module need 
+             to determine those genes and associated parent chromosomes to create offspring
+             chromosome.
+            </summary>
+            <param name="mutationRate"> Specified mutation rate</param>
+            <param name="startIdx"> The start index of offspring from mutation </param>
+            <returns> Number of mutated children created </returns>
+        </member>
+        <member name="T:OmniSoftwareStudio.OrganismGA.RealNumberCrossover">
+            <summary>
+             Types of crossover operators
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.Convex">
+            <summary>
+             Convex crossover: X'= alpha X1 + beta X2; x" = beta X1 +alpha X2; alpha + beta = 1; alpha, beat > 0
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.Affine">
+            <summary>
+             Affine crossover: X'= alpha X1 + beta X2; x" = beta X1 +alpha X2;alpha + beta = 1; alpha, beat belong to R
+            </summary>
+        </member>
+        <member name="F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.Linear">
+            <summary>
+             Linear crossover:  X'= alpha X1 + beta X2; x" = beta X1 +alpha X2;alpha, beat belong to R
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.LargeValueDivided" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.SmallValueDivided" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.MiddleAndOneEndSegments" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.TwoEndSegments" -->
+        <!-- Badly formed XML comment ignored for member "F:OmniSoftwareStudio.OrganismGA.RealNumberCrossover.FowardAndBackwardMiddleSegments" -->
+    </members>
+</doc>
