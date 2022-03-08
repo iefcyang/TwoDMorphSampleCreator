@@ -17,8 +17,10 @@ namespace ThreeDTransformationOptimization
         public MainForm( )
         {
             InitializeComponent( );
-            lowerBounds = new double[ 6 ] { -50, -50, -50, -Math.PI / 2, -Math.PI / 2, -Math.PI / 2 };
-            upperBounds = new double[ 6 ] { 50, 50, 50, Math.PI / 2, Math.PI / 2, Math.PI / 2 };
+            //lowerBounds = new double[ 6 ] { -50, -50, -50, -Math.PI / 2, -Math.PI / 2, -Math.PI / 2 };
+            //upperBounds = new double[ 6 ] { 50, 50, 50, Math.PI / 2, Math.PI / 2, Math.PI / 2 };
+            lowerBounds = new double[ 6 ] { -100, -100, -100, -Math.PI, -Math.PI , -Math.PI  };
+            upperBounds = new double[ 6 ] { 100, 100, 100, Math.PI , Math.PI , Math.PI  };
         }
 
         double x, y, z, xang, yang, zang;
@@ -93,8 +95,14 @@ namespace ThreeDTransformationOptimization
             mySolver.CreateManagementPanel( spcSecond.Panel2 );
  
 
-            mySolver.OneNormalRunCompleted += MySolver_OneNormalRunCompleted;
+        //    mySolver.OneNormalRunCompleted += MySolver_OneNormalRunCompleted;
+            mySolver.ObjectiveValueImproved += MySolver_OneNormalRunCompleted;
         }
+
+        //private void MySolver_OneNormalRunCompleted( object sender, EventArgs e )
+        //{
+        //    throw new NotImplementedException( );
+        //}
 
         private void MySolver_OneNormalRunCompleted( object sender, EventArgs e )
         {
